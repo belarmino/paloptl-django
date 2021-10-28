@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY', default='')
 DEBUG = env('DEBUG', cast=bool, default=True)
 ENV = os.environ.get('ENV', 'production')
 ALLOWED_HOSTS = [
-    'paloptl-django.herokuapp.com/',
+    'paloptl-django.herokuapp.com',
     'localhost'
 ]
 
