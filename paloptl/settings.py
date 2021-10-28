@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'paloptl.wsgi.application'
 # }
 
 DATABASES = {
-    'default': env.db
+    'default': env.db()
 }
 
 # Password validation
