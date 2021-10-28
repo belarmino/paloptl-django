@@ -11,21 +11,26 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+#enviriment variables
+env = environ.Env()
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j^p%(u-tu@(0z8h6)81g301&n-94x&7bbs3gemu=*kdt%zl3kj'
+SECRET_KEY = env('SECRET_KEY', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = env('DEBUG', cast=bool, default=True)
+ENV = os.environ.get('ENV', 'production')
 ALLOWED_HOSTS = []
 
 
@@ -38,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'paloptl',
     'base'
 ]
 
@@ -84,14 +88,7 @@ WSGI_APPLICATION = 'paloptl.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'paloptl_django',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': env.db
 }
 
 
