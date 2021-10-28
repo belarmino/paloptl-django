@@ -31,7 +31,10 @@ SECRET_KEY = env('SECRET_KEY', default='')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', cast=bool, default=True)
 ENV = os.environ.get('ENV', 'production')
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'paloptl-django.herokuapp.com/',
+    'localhost'
+]
 
 # Application definition
 
